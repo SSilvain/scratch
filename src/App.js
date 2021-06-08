@@ -1,23 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
 
 function App() {
+  const arr = [0,111,222,"333","444"]
+  const arrOut = arr.map( x => <p>{x}</p>)
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Привет, react!</h2> 
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex hic, nulla atque debitis quae iste illo numquam necessitatibus eos et modi cumque enim deserunt error! Cum eveniet repudiandae magnam repellendus!</p>
+      {arrOut}
     </div>
   );
 }
