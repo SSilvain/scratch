@@ -1,4 +1,5 @@
 import {Component} from "react";
+import Balance from "../Balance";
 
 class App extends Component {
   constructor () {
@@ -6,19 +7,29 @@ class App extends Component {
     this.state ={
       balance: 0
     }
-    this.state.arr = [0,111,222,"333","444"];
-    this.state.arrOut = this.state.arr.map( x => <p>{x}</p>);
+    this.onIncrease = this.onIncrease.bind(this);
+  }
   
-}
+  onIncrease (){
+    this.setState({
+      balance: this.state.balance = this.state.balance+1
+    })
+  }
   
-    render(){
-      return (
-        <div className="App">
-          <h2>Привет, react!</h2> 
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex hic, nulla atque debitis quae iste illo numquam necessitatibus eos et modi cumque enim deserunt error! Cum eveniet repudiandae magnam repellendus!</p>
-          {this.state.arrOut}
-        </div>
-      );}
+  onDecrease = () => {
+    this.setState({
+      balance: this.state.balance = this.state.balance-1
+    })
+  }
+  
+  render(){
+    return (
+      <div>
+        <Balance balance={this.state.balance} />
+        <button onClick={this.onIncrease}>Increaase</button>
+        <button onClick={this.onDecrease}>Decreaase</button>
+      </div>
+    );}
   }
 
 export default App;
