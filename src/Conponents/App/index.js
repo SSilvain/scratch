@@ -5,21 +5,34 @@ class App extends Component {
   constructor () {
     super();
     this.state ={
-      balance: 0
+      balance: 0,
+      transactions: []
     }
-    this.onIncrease = this.onIncrease.bind(this);
   }
   
-  onIncrease (){
-    this.setState({
-      balance: this.state.balance = this.state.balance+1
-    })
+  componentDidMount (){
+    const balance = window.localStorage.getItem("balance")*1;
+    this.setState ((state) =>({
+      balance
+    }))
+  }
+  
+  componentWillUnmount (){
+    window.localStorage.setItem("balance", this.state.balance)
+  }
+  
+  onIncrease = () => {
+    this.setState((state)=> ({
+        balance: state.balance = state.balance+1,
+        transactions: [{label: "inc"}, ...state.transactions]})
+    )
   }
   
   onDecrease = () => {
-    this.setState({
-      balance: this.state.balance = this.state.balance-1
-    })
+    this.setState((state)=> ({
+        balance: state.balance = state.balance-1,
+        transactions: [{label: "dec"}, ...state.transactions]})
+    )
   }
   
   render(){
@@ -28,6 +41,9 @@ class App extends Component {
         <Balance balance={this.state.balance} />
         <button onClick={this.onIncrease}>Increaase</button>
         <button onClick={this.onDecrease}>Decreaase</button>
+        <div>{
+          this.state.transactions.map(x=>x.label)
+          }</div>
       </div>
     );}
   }
