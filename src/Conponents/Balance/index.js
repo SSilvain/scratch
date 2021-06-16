@@ -1,5 +1,5 @@
-const Balance = ({ balance, children }) => {
-    return <div>{children} : {balance}</div>;
+const Balance = ({ balance }) => {
+    return <div>{balance === 0 ? "full zero": balance}</div>;
 };
 
 export default Balance;
