@@ -1,8 +1,11 @@
-const Transaction = ({ label, value, id }) => {
+import styled from "styled-components";
+import {Wrapper} from "./style"
+
+const Transaction = ({ label, value}) => {
     return (
-        <div key={id}>
+        <Wrapper value={value}>
             {label} <strong>{value}</strong>
-        </div>
+        </Wrapper>
     );
 };
 

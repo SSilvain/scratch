@@ -2,12 +2,13 @@ import { Component } from "react";
 import Balance from "../Balance";
 import Transactions from "../Transactions";
 import Form from "../Form";
-let id = 0;
+import {Wrapper, GlobalStyle} from "./style"
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
+            id: 0,
             balance: 0,
             transactions: [],
         };
@@ -15,18 +16,19 @@ class App extends Component {
     onChange = (value) =>{
         this.setState((state)=>({
             balance: state.balance + Number(value),
-            transactions: [{label: "action", value}, ...state.transactions]
+            transactions: [{label: "action", value, id: ++state.id}, ...state.transactions]
         }))
     }
 
  
     render() {
         return (
-            <div>
+            <Wrapper>
+                <GlobalStyle/>
                 <Balance balance={this.state.balance} />
                 <Form onChange={this.onChange} />
                 <Transactions transactions={this.state.transactions} />
-            </div>
+            </Wrapper>
         );
     }
 }
