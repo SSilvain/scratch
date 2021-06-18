@@ -2,9 +2,10 @@ import { Component } from "react";
 import Balance from "../Balance";
 import Transactions from "../Transactions";
 import Form from "../Form";
-import {Wrapper, GlobalStyle} from "./style"
+import { Wrapper } from "./style";
+import ErrorBoundary from "../ErrorBoundary";
 
-class App extends Component {
+class Home extends Component {
     constructor() {
         super();
         this.state = {
@@ -13,24 +14,27 @@ class App extends Component {
             transactions: [],
         };
     }
-    onChange = (value) =>{
-        this.setState((state)=>({
+    onChange = (value) => {
+        this.setState((state) => ({
             balance: state.balance + Number(value),
-            transactions: [{label: "action", value, id: ++state.id}, ...state.transactions]
-        }))
-    }
+            transactions: [
+                { label: "action", value, id: ++state.id },
+                ...state.transactions,
+            ],
+        }));
+    };
 
- 
     render() {
         return (
-            <Wrapper>
-                <GlobalStyle/>
-                <Balance balance={this.state.balance} />
-                <Form onChange={this.onChange} />
-                <Transactions transactions={this.state.transactions} />
-            </Wrapper>
+            <ErrorBoundary>
+                <Wrapper>
+                    <Balance balance={this.state.balance} />
+                    <Form onChange={this.onChange} />
+                    <Transactions transactions={this.state.transactions} />
+                </Wrapper>
+            </ErrorBoundary>
         );
     }
 }
 
-export default App;
+export default Home;
