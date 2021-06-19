@@ -1,6 +1,6 @@
 const About = () => {
     return(
-        <>About new</>
+        <>About new Server2</>
     )
 }
 export default About;
