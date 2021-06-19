@@ -13,14 +13,17 @@ class Form extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.onChange(this.state.value);
-        this.setState((state) => ({ value: "" }))
+        this.props.onChange(this.state);
+        this.setState({
+            value: "",
+            comment: "",
+        })
     };
 
     onChange = (e) => {
         const { value, name } = e.target;
         this.setState({ 
-            [name]: name === "value" ? +value: value
+            [name]: value
         });
     };
 

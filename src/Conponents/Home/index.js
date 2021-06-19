@@ -14,11 +14,15 @@ class Home extends Component {
             transactions: [],
         };
     }
-    onChange = (value) => {
+    onChange = ({value, date,comment}) => {
         this.setState((state) => ({
             balance: state.balance + Number(value),
             transactions: [
-                { label: "action", value, id: ++state.id },
+                { 
+                    value: +value,
+                    comment,
+                    date, 
+                    id: ++state.id },
                 ...state.transactions,
             ],
         }));
