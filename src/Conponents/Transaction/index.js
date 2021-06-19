@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import {Wrapper} from "./style"
 
 const Transaction = ({ label, value}) => {

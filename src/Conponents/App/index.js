@@ -28,14 +28,14 @@ const App = () => {
                     </ul>
                 </nav>
                 <Switch>
-                    <Route path="/">
+                    <Route exact path="/">
                         <Home />
                     </Route>
                     <Route path="/about">
                         <About />
                     </Route>
                     <Route path="/statistics">
-                        <Statistics />
+                        <Statistics test="this is test Silvain"/>
                     </Route>
                 </Switch>
             </Wrapper>

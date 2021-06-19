@@ -1,6 +1,6 @@
-const Statistics = () => {
+const Statistics = (props) => {
     return(
-        <>Statistics</>
+        <>Statistics {props.test}</>
     )
 }
 export default Statistics;

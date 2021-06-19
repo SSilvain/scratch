@@ -3,7 +3,7 @@ import Balance from "../Balance";
 import Transactions from "../Transactions";
 import Form from "../Form";
 import { Wrapper } from "./style";
-import ErrorBoundary from "../ErrorBoundary";
+import ErrorBoundary from "../ErrorBoundaries";
 
 class Home extends Component {
     constructor() {
