@@ -1,20 +1,22 @@
-// Statistics.stories.js
+// Transaction.stories.js
 
 import React from 'react';
 
-import Statistics from '.';
+import Transaction from '.';
 
 //👇 This default export determines where your story goes in the story list
 export default {
-  title: 'Statistics',
-  component: Statistics,
+  title: 'Transaction',
+  component: Transaction,
 };
 
 //👇 We create a “template” of how args map to rendering
-const Template = (args) => <Statistics {...args} />;
+const Template = (args) => <Transaction {...args} />;
 
 export const FirstStory = Template.bind({});
 
 FirstStory.args = {
+    label: "some action",
+    value: 0
   /*👇 The args you need here will depend on your component */
 };
