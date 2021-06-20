@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Transaction component should show transaction 1`] = `
+<Comment
+  value={22}
+>
+  <styled.div>
+    10.10.21
+  </styled.div>
+  <styled.div>
+    22.00
+  </styled.div>
+  <styled.div>
+    hell commnt
+  </styled.div>
+</Comment>
+`;
