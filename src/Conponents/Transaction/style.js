@@ -16,16 +16,16 @@ export const TransactionDate = styled.div`
     flex-grow: 1;
 `;
 
-Wrapper.displayName = "TransactionDate";
+TransactionDate.displayName = "TransactionDate";
 
 export const Value = styled.div`
     flex-grow: 1;
 `;
 
-Wrapper.displayName = "Value";
+Value.displayName = "Value";
 
 export const Comment = styled.div`
     flex-grow: 2;
 `;
 
-Wrapper.displayName = "Comment";
+Comment.displayName = "Comment";

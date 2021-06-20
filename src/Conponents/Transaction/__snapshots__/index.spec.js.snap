@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Transaction component should show transaction 1`] = `
-<Comment
+<TransactionWrapper
   value={22}
 >
-  <styled.div>
+  <TransactionDate>
     10.10.21
-  </styled.div>
-  <styled.div>
+  </TransactionDate>
+  <Value>
     22.00
-  </styled.div>
-  <styled.div>
+  </Value>
+  <Comment>
     hell commnt
-  </styled.div>
-</Comment>
+  </Comment>
+</TransactionWrapper>
 `;
