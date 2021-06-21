@@ -1,46 +1,56 @@
+import React from "react";
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    Link
-  } from "react-router-dom";
+    Route
+} from "react-router-dom";
 import { Wrapper, GlobalStyle } from "./style";
 import Statistics from "../Statistics";
 import About from "../About";
 import Home from "../Home";
+import Header from "../Header";
+import { open } from "../../utils/indexdb";
 
-const App = () => {
-    return (
-        <Router>
-            <Wrapper>
-                <GlobalStyle />
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/about">About</Link>
-                        </li>
-                        <li>
-                            <Link to="/statistics">Statistics</Link>
-                        </li>
-                    </ul>
-                </nav>
-                <Switch>
-                    <Route exact path="/">
-                        <Home />
-                    </Route>
-                    <Route path="/about">
-                        <About />
-                    </Route>
-                    <Route path="/statistics">
-                        <Statistics test="this is test Silvain"/>
-                    </Route>
-                </Switch>
-            </Wrapper>
-        </Router>
-    );
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state ={
+            loading: true
+        }
+
+    }
+    componentDidMount() {
+        open().then(() => {
+            this.setState({
+                loading: false
+            })
+        });
+    }
+    render() {
+        if (this.state.loading) {
+            return <div>Loading...</div>
+        }
+        return (
+            <Router>
+                <Wrapper>
+                    <GlobalStyle />
+                    <Header/>
+                    <Switch>
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                        <Route path="/about">
+                            <About />
+                        </Route>
+                        <Route path="/statistics">
+                            <Statistics test="this is test Silvain" />
+                        </Route>
+                    </Switch>
+                </Wrapper>
+            </Router>
+        );
+    }
+
 };
 
 export default App;

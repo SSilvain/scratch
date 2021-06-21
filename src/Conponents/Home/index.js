@@ -4,28 +4,40 @@ import Transactions from "../Transactions";
 import Form from "../Form";
 import { Wrapper } from "./style";
 import ErrorBoundary from "../ErrorBoundaries";
-
+import {addItem, getItems} from "../../utils/indexdb";
 class Home extends Component {
     constructor() {
         super();
         this.state = {
-            id: 0,
             balance: 0,
             transactions: [],
         };
     }
-    onChange = ({value, date,comment}) => {
+    componentDidMount(){
+        getItems().then((transactions) => {
+            this.setState({
+                transactions
+            })
+            
+        }).catch((e)=>{
+            
+        })
+    }
+    onChange = ({ value, date, comment }) => {
+        const transaction = {
+            value: +value,
+            comment,
+            date, 
+            id: Date.now()
+        }
         this.setState((state) => ({
             balance: state.balance + Number(value),
             transactions: [
-                { 
-                    value: +value,
-                    comment,
-                    date, 
-                    id: ++state.id },
+                transaction,
                 ...state.transactions,
             ],
         }));
+        addItem(transaction);
     };
 
     render() {
