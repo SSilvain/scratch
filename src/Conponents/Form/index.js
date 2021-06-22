@@ -1,58 +1,58 @@
-import { Component } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 
-class Form extends Component {
-    constructor() {
-        super();
-        this.state = {
-            value: "",
-            date: new Date().toISOString().substring(0,10),
-            comment: "",
-        }
-    }
+const Form = (props) => {
+    const [form, setForm] = useState({
+        value: "",
+        date: new Date().toISOString().substring(0, 10),
+        comment: "",
+    });
 
-    onSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
-        this.props.onChange(this.state);
-        this.setState({
+        props.onChange(form);
+        setForm({
+            ...form,
             value: "",
             comment: "",
-        })
-    };
-
-    onChange = (e) => {
-        const { value, name } = e.target;
-        this.setState({ 
-            [name]: value
         });
     };
 
+    const onChange = (e) => {
+        const { value, name } = e.target;
+        setForm({
+            ...form,
+            [name]: value,
+        });
+    };
 
-    render() {
-        return (
-            <form onSubmit={this.onSubmit}>
-                <input
-                    type="date"
-                    name="date"
-                    value={this.state.date}
-                    onChange={this.onChange} />
-                <input
-                    type="text"
-                    name="value"
-                    placeholder="summa"
-                    value={this.state.value}
-                    onChange={this.onChange} />
-                <textarea name="comment"
-                    value={this.state.comment}
-                    onChange={this.onChange}></textarea>
-                <button>Save</button>
-            </form>
-        );
-    }
-}
+    return (
+        <form onSubmit={onSubmit}>
+            <input
+                type="date"
+                name="date"
+                value={form.date}
+                onChange={onChange}
+            />
+            <input
+                type="text"
+                name="value"
+                placeholder="summa"
+                value={form.value}
+                onChange={onChange}
+            />
+            <textarea
+                name="comment"
+                value={form.comment}
+                onChange={onChange}
+            ></textarea>
+            <button>Save</button>
+        </form>
+    );
+};
 
 Form.propTypes = {
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
 };
 
 export default Form;

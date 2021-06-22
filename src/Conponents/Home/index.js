@@ -1,56 +1,42 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import Balance from "../Balance";
 import Transactions from "../Transactions";
 import Form from "../Form";
 import { Wrapper } from "./style";
 import ErrorBoundary from "../ErrorBoundaries";
-import {addItem, getItems} from "../../utils/indexdb";
-class Home extends Component {
-    constructor() {
-        super();
-        this.state = {
-            balance: 0,
-            transactions: [],
-        };
-    }
-    componentDidMount(){
-        getItems().then((transactions) => {
-            this.setState({
-                transactions
+import { addItem, getItems } from "../../utils/indexdb";
+const Home = () => {
+    const [balance, setBalance] = useState(0);
+    const [transactions, setTransactions] = useState([]);
+
+    useEffect(() => {
+        getItems()
+            .then((item) => {
+                setTransactions(item);
             })
-            
-        }).catch((e)=>{
-            
-        })
-    }
-    onChange = ({ value, date, comment }) => {
+            .catch((e) => {});
+    }, [setTransactions]);
+
+    const onChange = ({ value, date, comment }) => {
         const transaction = {
             value: +value,
             comment,
-            date, 
-            id: Date.now()
-        }
-        this.setState((state) => ({
-            balance: state.balance + Number(value),
-            transactions: [
-                transaction,
-                ...state.transactions,
-            ],
-        }));
+            date,
+            id: Date.now(),
+        };
+        setTransactions([transaction, ...transactions]);
+        setBalance(balance + Number(value));
         addItem(transaction);
     };
-
-    render() {
-        return (
-            <ErrorBoundary>
-                <Wrapper>
-                    <Balance balance={this.state.balance} />
-                    <Form onChange={this.onChange} />
-                    <Transactions transactions={this.state.transactions} />
-                </Wrapper>
-            </ErrorBoundary>
-        );
-    }
-}
+    return (
+        <ErrorBoundary>
+            <Wrapper>
+                <Balance balance={balance} />
+                <Form onChange={onChange} />
+                <Transactions transactions={transactions} />
+            </Wrapper>
+        </ErrorBoundary>
+    );
+};
 
 export default Home;
